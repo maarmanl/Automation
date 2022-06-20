@@ -192,5 +192,13 @@ public class PageObjects {
 	public static String sendDownloadBtn() {
 		return "//div[@class= 'dropdown-menu-item dropdown-menu-item--send-and-download']";
 	}
+	
+	public static String didgitalWalletTab() {
+		return "//div[contains(text(),'Digital Wallet Management')]";
+	}
+	
+	public static String listTokens() {
+		return "//div[@title= 'List Tokens']";
+	}
 
 }

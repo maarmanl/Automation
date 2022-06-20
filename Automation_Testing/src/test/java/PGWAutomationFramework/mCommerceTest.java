@@ -90,6 +90,42 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 
 		}
 	}
+	
+	public static boolean listTokens() throws InterruptedException{
+		initiatemCommerceBrowser();
+		
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.didgitalWalletTab())) {
+			System.out.println("Failed to wait for didgital wallet tab");
+			return false;
+		}
+		
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.didgitalWalletTab())) {
+			System.out.println("Failed to click didgital wallet tab");
+			return false;
+		}
+		
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.listTokens())) {
+			System.out.println("Failed to wait for list tokens");
+			return false;
+		}
+		
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.listTokens())) {
+			System.out.println("Failed to click list tokens");
+		}
+		
+		Thread.sleep(3000);
+		
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendBtn())) {
+			System.out.println("Failed to wait for send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.sendBtn())) {
+			System.out.println("Failed to click send Btn");
+			return false;
+		}
+		return false;
+	} 
 
 	public static boolean mCommerceSOVPayment() throws InterruptedException {
 		initiatemCommerceBrowser();

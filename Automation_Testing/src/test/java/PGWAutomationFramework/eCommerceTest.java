@@ -197,13 +197,21 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			return false;
 		}
 
-		Thread.sleep(10000);
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.secureContinueBtn())) {
+			System.out.println("Failed to wait for eCommerce payment pages split payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.secureContinueBtn())) {
+			System.out.println("Failed to click eCommerce payment pages split payment");
+			return false;
+		}
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.lastResponse(),5000)) {
 			System.out.println("Failed to wait for respone message");
 			return false;
 		}
-
+		Thread.sleep(1000);
 		String responseMessage = SeleniumDriverUtilities.retrieveElementText(PageObjects.lastResponse()).trim();
 
 		if (!responseMessage.equals("Approved or completed successfully")) {
