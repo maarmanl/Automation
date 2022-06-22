@@ -17,6 +17,7 @@ import Utilities.SeleniumDriverUtilities;
 public class mCommerceTest extends SeleniumDriverUtilities {
 	static SeleniumDriverUtilities utilities = new SeleniumDriverUtilities();
 	static WebElement element;
+	
 	public static void initiatemCommerceBrowser() {
 
 		if (!SeleniumDriverUtilities.navigateToURL(PageObjects.url())) {
@@ -90,31 +91,31 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 
 		}
 	}
-	
+
 	public static boolean listTokens() throws InterruptedException{
 		initiatemCommerceBrowser();
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.didgitalWalletTab())) {
 			System.out.println("Failed to wait for didgital wallet tab");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.didgitalWalletTab())) {
 			System.out.println("Failed to click didgital wallet tab");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.listTokens())) {
 			System.out.println("Failed to wait for list tokens");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.listTokens())) {
 			System.out.println("Failed to click list tokens");
 		}
-		
+
 		Thread.sleep(3000);
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendBtn())) {
 			System.out.println("Failed to wait for send Btn");
 			return false;
@@ -124,6 +125,9 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 			System.out.println("Failed to click send Btn");
 			return false;
 		}
+		
+		Thread.sleep(5000);
+		getDriver().quit();
 		return false;
 	} 
 
@@ -255,6 +259,7 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 			return false;
 		}
 
+		
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
 			System.out.println("Failed to click for close tab Btn2");
 			return false;
@@ -276,6 +281,7 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 			return false;
 		}
 
+		
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.bodyIcon())) {
 			System.out.println("Failed to click body icon");
 			return false;
@@ -381,7 +387,7 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 			return false;
 		}
 
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		getDriver().quit();
 		return false;
 	}
