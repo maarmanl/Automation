@@ -6,6 +6,7 @@ import java.util.Iterator;
 public class PostmanTest {
 
 	public static void main(String[] args) throws AWTException, InterruptedException {
+		
 		for (int i = 0; i < 5; i++) {
 			
 			  eCommerceTest.InitiateImmediateSplitPayment();
@@ -13,7 +14,8 @@ public class PostmanTest {
 			  eCommerceTest.ImmediateDelayedSplitPayment(); 
 			  eCommerceTest.InitiateRecurringPayment(); 
 			  mCommerceTest.listTokens();
-			  mCommerceTest.mCommerceSOVPayment(); 
+			  mCommerceTest.mCommerceSOVPayment();
+			  mCommerceTest.mCommerceCardPayment();
 			  }
 			 		
 

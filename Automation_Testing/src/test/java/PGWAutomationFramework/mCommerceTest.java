@@ -392,5 +392,267 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 		return false;
 	}
 
+	public static boolean mCommerceCardPayment() throws InterruptedException {
+		initiatemCommerceBrowser();
+		String parent = Driver.getWindowHandle();
+		Actions hold = new Actions(getDriver());
+		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
+			System.out.println("Failed to click environment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.environment())) {
+			System.out.println("Failed to select environment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.authenitcateTab(), getTimeout())) {
+			System.out.println("Failed to wait for authenticate token tab");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.authenitcateTab())) {
+			System.out.println("Failed to click authenticate tab");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.initiateAuthenticateToken())) {
+			System.out.println("Failed to wait for initiate authenticate token");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.initiateAuthenticateToken())) {
+			System.out.println("Failed to click initiate authenticate token");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendBtn())) {
+			System.out.println("Failed to wait for eCommerce send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.sendBtn())) {
+			System.out.println("Failed to click eCommerce send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.paymentPages(),getTimeout())) {
+			System.out.println("Failed to wait for eCommerce payment pages url");
+			return false;
+		}
+
+		//Navigate to paymentPages in new tab
+		String URL = SeleniumDriverUtilities.retrieveElementText(PageObjects.paymentPages()).trim();
+		String navigateURL = URL.substring(18, URL.length()-1);
+
+		WebDriver newTab = getDriver().switchTo().newWindow(WindowType.TAB);
+
+		newTab.get(navigateURL);
+
+		Thread.sleep(10000);
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.lastResponse(),5000)) {
+			System.out.println("Failed to wait for respone message");
+			return false;
+		}
+
+		String responseMessage = SeleniumDriverUtilities.retrieveElementText(PageObjects.lastResponse()).trim();
+
+		if (!responseMessage.equals("Approved or completed successfully")) {
+
+			System.out.println(responseMessage + " : Test Fail");
+			return false;
+		}else {
+			System.out.println(responseMessage + " : TEST PASS!");
+		}
+
+		//Switch back to parent window
+		newTab.close();
+		getDriver().switchTo().window(parent);
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.paymentToken())) {
+			System.out.println("Failed to wait for payment token");
+			return false;
+		}
+
+		String paymentToken = SeleniumDriverUtilities.retrieveElementText(PageObjects.paymentToken());
+		paymentToken = paymentToken.substring(21, paymentToken.length()-2);
+		System.out.println(paymentToken);
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.copyToken(paymentToken))) {
+			System.out.println("Failed to wait for payment token to copy");
+			return false;
+		}else {
+			element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(PageObjects.copyToken(paymentToken))));
+			hold.doubleClick(element).build().perform();
+
+			hold.keyDown(Keys.CONTROL).sendKeys("c").build().perform();
+			hold.keyUp(Keys.CONTROL).build().perform();
+			Thread.sleep(1000);
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
+			System.out.println("Failed to wait for close tab Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
+			System.out.println("Failed to click for close tab Btn");
+			return false;
+		}
+
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.paymentAuthCardTab())) {
+			System.out.println("Failed to wait for payment auth tab");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.paymentAuthCardTab())) {
+			System.out.println("Failed to click payment auth tab");
+			return false;
+		}
+
+		Thread.sleep(1000);
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
+			System.out.println("Failed to wait for close tab Btn");
+			return false;
+		}
+
+		
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
+			System.out.println("Failed to click for close tab Btn2");
+			return false;
+		}
+
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.AuthRequest())) {
+			System.out.println("Failed to wait for payment auth tab");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.AuthRequest())) {
+			System.out.println("Failed to click payment auth tab");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.bodyIcon())) {
+			System.out.println("Failed to wait for body icon");
+			return false;
+		}
+
+		
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.bodyIcon())) {
+			System.out.println("Failed to click body icon");
+			return false;
+		}
+
+		String paymentToken1 = SeleniumDriverUtilities.retrieveElementText(PageObjects.paymentTokenscnd());
+		paymentToken1 = paymentToken1.substring(21, paymentToken1.length()-2);
+
+		if(paymentToken1.equals(paymentToken)) {
+			System.out.println("Payment token match");
+		}else {
+			element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='view-line'][6]//span[contains(text(),'"+paymentToken1+"')]")));
+			hold.doubleClick(element).build().perform();
+
+			hold.keyDown(Keys.CONTROL).sendKeys("v").build().perform();
+			hold.keyUp(Keys.CONTROL).build().perform();
+
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendDownload())) {
+			System.out.println("Failed to wait for send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.sendDownload())) {
+			System.out.println("Failed to click send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendDownloadBtn())) {
+			System.out.println("Failed to wait for send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.sendDownloadBtn())) {
+			System.out.println("Failed to click send Btn");
+			return false;
+		}
+
+		Thread.sleep(3000);
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
+			System.out.println("Failed to wait for close tab Btn3");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
+			System.out.println("Failed to click for close tab Btn3");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.finAdviceTab())) {
+			System.out.println("Failed to wait for fin advice tab Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.finAdviceTab())) {
+			System.out.println("Failed to click fin advice tab Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.bodyIcon())) {
+			System.out.println("Failed to wait for body icon");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.bodyIcon())) {
+			System.out.println("Failed to click body icon");
+			return false;
+		}
+
+		paymentToken1 = SeleniumDriverUtilities.retrieveElementText(PageObjects.paymentTokenscnd());
+		Thread.sleep(1000);
+		paymentToken1 = paymentToken1.substring(21, paymentToken1.length()-2);
+
+		if(paymentToken1.equals(paymentToken)) {
+			System.out.println("Payment token match");
+		}else {
+			element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='view-line'][6]//span[contains(text(),'"+paymentToken1+"')]")));
+			hold.doubleClick(element).build().perform();
+
+			hold.keyDown(Keys.CONTROL).sendKeys("v").build().perform();
+			hold.keyUp(Keys.CONTROL).build().perform();
+
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendDownload())) {
+			System.out.println("Failed to wait for send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.sendDownload())) {
+			System.out.println("Failed to click send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendDownloadBtn())) {
+			System.out.println("Failed to wait for send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.sendDownloadBtn())) {
+			System.out.println("Failed to click send Btn");
+			return false;
+		}
+
+		Thread.sleep(5000);
+		getDriver().close();
+		getDriver().quit();
+		return false;
+	}
 
 }

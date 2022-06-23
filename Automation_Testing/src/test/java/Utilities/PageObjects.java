@@ -200,5 +200,9 @@ public class PageObjects {
 	public static String listTokens() {
 		return "//div[@title= 'List Tokens']";
 	}
+	
+	public static String paymentAuthCardTab() {
+		return "//div[contains(text(),'Payment - Auth - Card')]";	
+	}
 
 }
