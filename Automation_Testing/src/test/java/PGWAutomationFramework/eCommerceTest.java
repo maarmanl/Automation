@@ -146,9 +146,19 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 		}
 
 		//Select card
-		WebElement element = getDriver().findElement(By.xpath(PageObjects.cardList()));
-		List<WebElement> select = element.findElements(By.tagName("div"));
-		select.get(3).click();
+//		WebElement element = getDriver().findElement(By.xpath(PageObjects.cardList()));
+//		List<WebElement> select = element.findElements(By.tagName("div"));
+//		select.get(3).click();
+		
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.singlepaymentCard())) {
+			System.out.println("Failed to wait for eCommerce continue to pay Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.singlepaymentCard())) {
+			System.out.println("Failed to click eCommerce continue to pay Btn");
+			return false;
+		}
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.continueToPayBtn())) {
 			System.out.println("Failed to wait for eCommerce continue to pay Btn");
@@ -273,9 +283,19 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 		}
 
 		//Select card
-		WebElement element = getDriver().findElement(By.xpath(PageObjects.splitPaymentCardList()));
-		List<WebElement> select = element.findElements(By.tagName("div"));
-		select.get(3).click();
+//		WebElement element = getDriver().findElement(By.xpath(PageObjects.splitPaymentCardList()));
+//		List<WebElement> select = element.findElements(By.tagName("div"));
+//		select.get(3).click();
+		
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.splitPaymentCard1())) {
+			System.out.println("Failed to wait for eCommerce payment pages split payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.splitPaymentCard1())) {
+			System.out.println("Failed to click eCommerce payment pages split payment");
+			return false;
+		}
 
 		if (!SeleniumDriverUtilities.enterText(PageObjects.amount(), "1000")) {
 			System.out.println("Failed to enter amount");
@@ -292,9 +312,19 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			return false;
 		}
 
-		element = getDriver().findElement(By.xpath(PageObjects.splitPaymentCardList()));
-		List<WebElement> select2 = element.findElements(By.tagName("div"));
-		select2.get(21).click();
+//		element = getDriver().findElement(By.xpath(PageObjects.splitPaymentCardList()));
+//		List<WebElement> select2 = element.findElements(By.tagName("div"));
+//		select2.get(21).click();
+		
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.splitPaymentCard2())) {
+			System.out.println("Failed to wait for eCommerce payment pages split payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.splitPaymentCard2())) {
+			System.out.println("Failed to click eCommerce payment pages split payment");
+			return false;
+		}
 
 		if (!SeleniumDriverUtilities.enterText(PageObjects.cvvTextInput(), "178")) {
 			System.out.println("Failed to enter cvv");
@@ -426,9 +456,19 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 		}
 
 		//Select card
-		WebElement element = getDriver().findElement(By.xpath(PageObjects.cardList()));
-		List<WebElement> select = element.findElements(By.tagName("div"));
-		select.get(3).click();
+//		WebElement element = getDriver().findElement(By.xpath(PageObjects.cardList()));
+//		List<WebElement> select = element.findElements(By.tagName("div"));
+//		select.get(3).click();
+		
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.singlepaymentCard())) {
+			System.out.println("Failed to wait for eCommerce continue to pay Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.singlepaymentCard())) {
+			System.out.println("Failed to click eCommerce continue to pay Btn");
+			return false;
+		}
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.continueToPayBtn())) {
 			System.out.println("Failed to wait for eCommerce continue to pay Btn");
@@ -545,9 +585,19 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 		}
 
 		//Select card
-		WebElement element = getDriver().findElement(By.xpath(PageObjects.splitPaymentCardList()));
-		List<WebElement> select = element.findElements(By.tagName("div"));
-		select.get(3).click();
+//		WebElement element = getDriver().findElement(By.xpath(PageObjects.splitPaymentCardList()));
+//		List<WebElement> select = element.findElements(By.tagName("div"));
+//		select.get(3).click();
+		
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.splitPaymentCard1())) {
+			System.out.println("Failed to wait for eCommerce payment pages split payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.splitPaymentCard1())) {
+			System.out.println("Failed to click eCommerce payment pages split payment");
+			return false;
+		}
 
 		if (!SeleniumDriverUtilities.enterText(PageObjects.amount(), "1000")) {
 			System.out.println("Failed to enter amount");
@@ -564,10 +614,20 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			return false;
 		}
 
-		element = getDriver().findElement(By.xpath(PageObjects.splitPaymentCardList()));
-		List<WebElement> select2 = element.findElements(By.tagName("div"));
-		select2.get(21).click();
+//		element = getDriver().findElement(By.xpath(PageObjects.splitPaymentCardList()));
+//		List<WebElement> select2 = element.findElements(By.tagName("div"));
+//		select2.get(21).click();
 
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.splitPaymentCard2())) {
+			System.out.println("Failed to wait for eCommerce payment pages split payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.splitPaymentCard2())) {
+			System.out.println("Failed to click eCommerce payment pages split payment");
+			return false;
+		}
+		
 		if (!SeleniumDriverUtilities.enterText(PageObjects.cvvTextInput(), "178")) {
 			System.out.println("Failed to enter cvv");
 			return false;
@@ -696,9 +756,19 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 		}
 
 		//Select card
-		WebElement element = getDriver().findElement(By.xpath(PageObjects.cardList()));
-		List<WebElement> select = element.findElements(By.tagName("div"));
-		select.get(3).click();
+//		WebElement element = getDriver().findElement(By.xpath(PageObjects.cardList()));
+//		List<WebElement> select = element.findElements(By.tagName("div"));
+//		select.get(3).click();
+		
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.singlepaymentCard())) {
+			System.out.println("Failed to wait for eCommerce continue to pay Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.singlepaymentCard())) {
+			System.out.println("Failed to click eCommerce continue to pay Btn");
+			return false;
+		}
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.continueToPayBtn())) {
 			System.out.println("Failed to wait for eCommerce continue to pay Btn");

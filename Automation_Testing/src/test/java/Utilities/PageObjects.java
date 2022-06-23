@@ -52,8 +52,8 @@ public class PageObjects {
 		return "//p[contains(text(),'Single Payment')]";
 	}
 
-	public static String cardList() {
-		return "//div[@class='payment-page-methods-list list-payment-methods append-single-payments none']";
+	public static String singlepaymentCard() {
+		return "//div[@id='page-method-id-0']";
 	}
 
 	public static String continueToPayBtn() {
@@ -85,8 +85,12 @@ public class PageObjects {
 		return "//p[contains(text(),'Split Payment')]";
 	}
 
-	public static String splitPaymentCardList() {
-		return "//div[@class='payment-page-methods-list list-payment-methods append-split-payments none']";
+	public static String splitPaymentCard1() {
+		return "//div[@class='payment-page-methods-list list-payment-methods append-split-payments none']//div[@id='page-method-id-0']";
+	}
+	
+	public static String splitPaymentCard2() {
+		return "//div[@class='payment-page-methods-list list-payment-methods append-split-payments none']//div[@id='page-method-id-1']";
 	}
 
 	public static String amount() {
