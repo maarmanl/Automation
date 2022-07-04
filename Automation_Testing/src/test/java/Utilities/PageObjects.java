@@ -45,7 +45,7 @@ public class PageObjects {
 	}
 
 	public static String paymentPages() {
-		return "//div[@class='view-line'][10]";
+		return "//div[@class='view-line'][9]";
 	}
 
 	public static String singlePayment() {

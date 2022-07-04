@@ -217,7 +217,7 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			System.out.println("Failed to wait for respone message");
 			return false;
 		}
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		String responseMessage = SeleniumDriverUtilities.retrieveElementText(PageObjects.lastResponse()).trim();
 
 		if (!responseMessage.equals("Approved or completed successfully")) {
