@@ -3,6 +3,7 @@ package Utilities;
 
 import java.time.Duration;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -106,6 +107,7 @@ public class SeleniumDriverUtilities {
 			WebDriverWait wait = new WebDriverWait(Driver, Duration.ofSeconds(getTimeout()));
 			WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
 			element.clear();
+			Thread.sleep(_timeout);
 			element.sendKeys(text);
 
 			return true;
@@ -125,4 +127,18 @@ public class SeleniumDriverUtilities {
 			return null;
 		}
 	}
+	
+	public static boolean scrollToElement(String elementXpath) {
+        try {
+            WebElement element = Driver.findElement(By.xpath(elementXpath));
+            ((JavascriptExecutor) Driver).executeScript("arguments[0].scrollIntoView(true);", element);
+            
+            return true;
+        } catch (Exception e) {
+            
+            return false;
+        }
+
+    }
+
 }

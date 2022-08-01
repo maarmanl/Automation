@@ -17,8 +17,8 @@ import Utilities.SeleniumDriverUtilities;
 public class mCommerceTest extends SeleniumDriverUtilities {
 	static SeleniumDriverUtilities utilities = new SeleniumDriverUtilities();
 	static WebElement element;
-	
-	public static void initiatemCommerceBrowser() {
+
+	public static void initiatemCommerceBrowser() throws InterruptedException {
 
 		if (!SeleniumDriverUtilities.navigateToURL(PageObjects.url())) {
 			System.out.println("Failed to navigate");
@@ -54,6 +54,7 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 
 
 		}
+
 
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.loginBtn())) {
 			System.out.println("Failed to click login btn");
@@ -93,7 +94,28 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 	}
 
 	public static boolean listTokens() throws InterruptedException{
-		initiatemCommerceBrowser();
+//		initiatemCommerceBrowser();
+//		String parent = Driver.getWindowHandle();
+		
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.eCommerce())) {
+			System.out.println("Failed to wait for mCommerce QA tab");
+
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.mCommerceQA())) {
+			System.out.println("Failed to click mCommerce QA tab");
+
+		}
+		
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
+			System.out.println("Failed to wait for close tab Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
+			System.out.println("Failed to click for close tab Btn");
+			return false;
+		}
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.didgitalWalletTab())) {
 			System.out.println("Failed to wait for didgital wallet tab");
@@ -125,16 +147,18 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 			System.out.println("Failed to click send Btn");
 			return false;
 		}
-		
+
 		Thread.sleep(5000);
-		getDriver().quit();
+//		getDriver().quit();
 		return false;
 	} 
 
 	public static boolean mCommerceSOVPayment() throws InterruptedException {
-		initiatemCommerceBrowser();
+//		initiatemCommerceBrowser();
 		String parent = Driver.getWindowHandle();
 		Actions hold = new Actions(getDriver());
+		
+		
 		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
 			System.out.println("Failed to click environment");
@@ -259,7 +283,7 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 			return false;
 		}
 
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
 			System.out.println("Failed to click for close tab Btn2");
 			return false;
@@ -281,7 +305,7 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 			return false;
 		}
 
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.bodyIcon())) {
 			System.out.println("Failed to click body icon");
 			return false;
@@ -520,7 +544,7 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 			return false;
 		}
 
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
 			System.out.println("Failed to click for close tab Btn2");
 			return false;
@@ -542,7 +566,7 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 			return false;
 		}
 
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.bodyIcon())) {
 			System.out.println("Failed to click body icon");
 			return false;

@@ -1,7 +1,6 @@
 package PGWAutomationFramework;
 
 import java.awt.AWTException;
-import java.util.Iterator;
 
 public class PostmanTest {
 
@@ -10,6 +9,7 @@ public class PostmanTest {
 		for (int i = 0; i < 5; i++) {
 
 			eCommerceTest.ImmediatePayment();
+			eCommerceTest.InitiateImmediateSplitPaymentAddCard();
 			eCommerceTest.InitiateImmediateSplitPayment();
 			eCommerceTest.ImmediateDelayedPayment();
 			eCommerceTest.ImmediateDelayedSplitPayment(); 

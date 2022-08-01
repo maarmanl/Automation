@@ -55,6 +55,10 @@ public class PageObjects {
 	public static String singlepaymentCard() {
 		return "//div[@id='page-method-id-0']";
 	}
+	
+	public static String recurringpaymentCard() {
+		return "//div[@id='page-method-id-2']";
+	}
 
 	public static String continueToPayBtn() {
 		return "//button[@name='3D-Secure-Select']";
@@ -124,7 +128,7 @@ public class PageObjects {
 
 	//Recurring payment
 	public static String recurringPayment() {
-		return "//div[@title= 'Initiate Recurring Payment Categorie 2']";
+		return "//div[@title= 'Initiate Recurring Payment Working']";
 	}
 
 	/*mCommerce pageobjects*/
@@ -207,6 +211,66 @@ public class PageObjects {
 	
 	public static String paymentAuthCardTab() {
 		return "//div[contains(text(),'Payment - Auth - Card')]";	
+	}
+	
+	public static String failToLogin() {
+		return "//div[@id = 'notification-div']";
+	}
+	
+	public static String splitPaymentAddCard() {
+		return "//div[@class='split-payment-add-button']//button";
+	}
+	
+	public static String cardName() {
+		return "//input[@id='nameOfCard']";
+	}
+	
+	public static String cardNumber() {
+		return "//input[@id='cardNumber']";
+	}
+	
+	public static String cardExpiryYear() {
+		return "//div[@class='payment-item card-expiry-year']//select";
+	}
+	
+	public static String yearOption() {
+		return "//option[@id='2022']";
+	}
+	
+	public static String cardExpiryDate() {
+		return "//div[@class='payment-item card-expiry-date']//select";
+	}
+	
+	public static String dateOption() {
+		return "//option[@value='October']";
+	}
+	
+	public static String slpitPaymentCVV() {
+		return "//input[@id='cardCvv']";
+	}
+	
+	public static String addCardAmount() {
+		return "//input[@id='cardAmountSplitPayment']";
+	}
+	
+	public static String saveCardCheckBox() {
+		return "//input[@id='saveCardCheckbox']";
+	}
+	
+	public static String  cardAlis() {
+		return "//input[@id='cardAlias']";
+	}
+	
+	public static String addCardDone() {
+		return "//button[@class='add-split-payment-card']";
+	}
+	
+	public static String removeCard() {
+		return "//div[@class='payment-page-methods-remove-card'][2]";
+	}
+	
+	public static String removeCardBtn() {
+		return "//div[@class='modal-inner-button']//btn[@class='column remove-button']";
 	}
 
 }
