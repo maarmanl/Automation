@@ -1171,7 +1171,7 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			System.out.println(responseMessage + " : TEST PASS!");
 		}
 		newTab.close();
-		getDriver().switchTo().window(parent);
+		getDriver().quit();
 		return false;
 	}
 

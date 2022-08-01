@@ -41,7 +41,7 @@ public class PageObjects {
 	}
 
 	public static String sendBtn() {
-		return "//span[contains(text(),'Send')]";
+		return "//div[@class='btn']//span[contains(text(),'Send')]";
 	}
 
 	public static String paymentPages() {

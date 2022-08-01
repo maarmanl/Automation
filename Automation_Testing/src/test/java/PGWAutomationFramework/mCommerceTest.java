@@ -94,28 +94,28 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 	}
 
 	public static boolean listTokens() throws InterruptedException{
-//		initiatemCommerceBrowser();
-//		String parent = Driver.getWindowHandle();
-		
-		if (!SeleniumDriverUtilities.clickElement(PageObjects.eCommerce())) {
-			System.out.println("Failed to wait for mCommerce QA tab");
+		initiatemCommerceBrowser();
+		//		String parent = Driver.getWindowHandle();
 
-		}
-
-		if (!SeleniumDriverUtilities.clickElement(PageObjects.mCommerceQA())) {
-			System.out.println("Failed to click mCommerce QA tab");
-
-		}
-		
-		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
-			System.out.println("Failed to wait for close tab Btn");
-			return false;
-		}
-
-		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
-			System.out.println("Failed to click for close tab Btn");
-			return false;
-		}
+		//		if (!SeleniumDriverUtilities.clickElement(PageObjects.eCommerce())) {
+		//			System.out.println("Failed to wait for mCommerce QA tab");
+		//
+		//		}
+		//
+		//		if (!SeleniumDriverUtilities.clickElement(PageObjects.mCommerceQA())) {
+		//			System.out.println("Failed to click mCommerce QA tab");
+		//
+		//		}
+		//		
+		//		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
+		//			System.out.println("Failed to wait for close tab Btn");
+		//			return false;
+		//		}
+		//
+		//		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
+		//			System.out.println("Failed to click for close tab Btn");
+		//			return false;
+		//		}
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.didgitalWalletTab())) {
 			System.out.println("Failed to wait for didgital wallet tab");
@@ -149,16 +149,16 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 		}
 
 		Thread.sleep(5000);
-//		getDriver().quit();
+		getDriver().quit();
 		return false;
 	} 
 
 	public static boolean mCommerceSOVPayment() throws InterruptedException {
-//		initiatemCommerceBrowser();
+		initiatemCommerceBrowser();
 		String parent = Driver.getWindowHandle();
 		Actions hold = new Actions(getDriver());
-		
-		
+
+
 		WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(30));
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
 			System.out.println("Failed to click environment");
@@ -190,7 +190,7 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 			return false;
 		}
 
-		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendBtn())) {
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendBtn(),30)) {
 			System.out.println("Failed to wait for eCommerce send Btn");
 			return false;
 		}
