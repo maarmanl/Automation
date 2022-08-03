@@ -8,15 +8,17 @@ public class PostmanTest {
 
 //		for (int i = 0; i < 5; i++) {
 
+			eCommerceTest.ImmediatePaymentAddCard();
 			eCommerceTest.ImmediatePayment();
-//			eCommerceTest.InitiateImmediateSplitPaymentAddCard();
-//			eCommerceTest.InitiateImmediateSplitPayment();
-//			eCommerceTest.ImmediateDelayedPayment();
-//			eCommerceTest.ImmediateDelayedSplitPayment(); 
-//			eCommerceTest.InitiateRecurringPayment(); 
-//			mCommerceTest.listTokens();
-//			mCommerceTest.mCommerceSOVPayment(); 
-//			mCommerceTest.mCommerceCardPayment();
+			eCommerceTest.InitiateImmediateSplitPaymentAddCard();
+			eCommerceTest.InitiateImmediateSplitPayment();
+			eCommerceTest.ImmediateDelayedPayment();
+			eCommerceTest.ImmediateDelayedSplitPayment(); 
+			eCommerceTest.InitiateRecurringPayment(); 
+			eCommerceTest.removeCard();
+			mCommerceTest.listTokens();
+			mCommerceTest.mCommerceSOVPayment(); 
+			mCommerceTest.mCommerceCardPayment();
 //		}
 
 

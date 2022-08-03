@@ -266,11 +266,27 @@ public class PageObjects {
 	}
 	
 	public static String removeCard() {
-		return "//div[@class='payment-page-methods-remove-card'][2]";
+		return "//div[@class='payment-page-methods-remove-card'][1]";
 	}
 	
 	public static String removeCardBtn() {
 		return "//div[@class='modal-inner-button']//btn[@class='column remove-button']";
+	}
+
+	public static String singlePaymentAddCard() {
+		return "//div[@class='payment-page-methods-content']//p[contains(text(),'Credit / debit card')]";
+	}
+	
+	public static String dateOptionSinglePayment() {
+		return "//option[@value='April']";
+	}
+	
+	public static String yearOptionSinglePayment() {
+		return "//option[@id='2024']";
+	}
+	
+	public static String removeCardDoneBtn() {
+		return "//button[contains(text(),'Done')]";
 	}
 
 }

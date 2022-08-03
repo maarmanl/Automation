@@ -1,5 +1,7 @@
 package PGWAutomationFramework;
 
+import java.util.Iterator;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 
@@ -93,10 +95,10 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 		}
 	}
 
-	public static boolean ImmediatePayment() throws InterruptedException {
-
+	public static boolean ImmediatePaymentAddCard() throws InterruptedException {
 		InitiateBrowser();
 		String parent = Driver.getWindowHandle();
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.immediatePayment())) {
 			System.out.println("Failed to wait for eCommerce InitiateImediatePayment");
 			return false;
@@ -141,10 +143,221 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			return false;
 		}
 
-		//Select card
-		//		WebElement element = getDriver().findElement(By.xpath(PageObjects.cardList()));
-		//		List<WebElement> select = element.findElements(By.tagName("div"));
-		//		select.get(3).click();
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.singlePaymentAddCard())) {
+			System.out.println("Failed to wait for add card button");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.singlePaymentAddCard())) {
+			System.out.println("Failed to click add card button");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.continueToPayBtn())) {
+			System.out.println("Failed to wait for the continue button");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.continueToPayBtn())) {
+			System.out.println("Failed to click continue button");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.cardName())) {
+			System.out.println("Failed to wait for card name input field");
+		}
+
+		if (!SeleniumDriverUtilities.enterText(PageObjects.cardName(),"cvv427")) {
+			System.out.println("Failed to enter card name into input field");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.cardNumber())) {
+			System.out.println("Failed to wait for card number input field.");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.enterText(PageObjects.cardNumber(),"4606390200004088")) {
+			System.out.println("Failed to enter card number into input field.");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.cardExpiryYear())) {
+			System.out.println("Failed to wait for add card expiry year dropdown");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.yearOptionSinglePayment())) {
+			System.out.println("Failed to enter add card expiry year");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.cardExpiryDate())) {
+			System.out.println("Failed to wait for add card expiry date dropdown");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.dateOptionSinglePayment())) {
+			System.out.println("Failed to enter add card expiry date");
+			return false;
+		}
+
+		//		if (!SeleniumDriverUtilities.waitForElement(PageObjects.addCardAmount())) {
+		//			System.out.println("Failed to wait for add card amount input field");
+		//			return false;
+		//		}
+		//		
+		//		if (!SeleniumDriverUtilities.enterText(PageObjects.addCardAmount(),"1000")) {
+		//			System.out.println("Failed to wait for add card amount input field");
+		//			return false;
+		//		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.slpitPaymentCVV())) {
+			System.out.println("Failed to wait for add card amount input field");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.enterText(PageObjects.slpitPaymentCVV(),"427")) {
+			System.out.println("Failed to wait for add card amount input field");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.saveCardCheckBox())) {
+			System.out.println("Failed to wati for save card checkBox");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.saveCardCheckBox())) {
+			System.out.println("Failed to click save card checkBox");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.cardAlis())) {
+			System.out.println("Failed to wait for add card amount input field");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.enterText(PageObjects.cardAlis(),"cvv427")) {
+			System.out.println("Failed to wait for add card amount input field");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.payBtn())) {
+			System.out.println("Failed to wait for eCommerce payment pages split payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.payBtn())) {
+			System.out.println("Failed to click eCommerce payment pages split payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.secureBtn())) {
+			System.out.println("Failed to wait for eCommerce payment pages split payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.secureBtn())) {
+			System.out.println("Failed to click eCommerce payment pages split payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.secureContinueBtn())) {
+			System.out.println("Failed to wait for eCommerce payment pages split payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.secureContinueBtn())) {
+			System.out.println("Failed to click eCommerce payment pages split payment");
+			return false;
+		}
+
+		Thread.sleep(5000);
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.lastResponse(),5000)) {
+			System.out.println("Failed to wait for respone message");
+			return false;
+		}
+
+		String responseMessage = SeleniumDriverUtilities.retrieveElementText(PageObjects.lastResponse()).trim();
+
+		if (!responseMessage.equals("Approved or completed successfully")) {
+
+			System.out.println(responseMessage + " : Test Fail");
+			return false;
+		}else {
+			System.out.println(responseMessage + " : TEST PASS!");
+		}
+		newTab.close();
+		getDriver().switchTo().window(parent);
+		return false;
+	}
+
+	public static boolean ImmediatePayment() throws InterruptedException {
+
+		//		InitiateBrowser();
+		String parent = Driver.getWindowHandle();
+
+		for (int i =0; i < 2; i++) {
+			if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
+				System.out.println("Failed to wait for close tab Btn");
+				return false;
+			}
+
+			if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
+				System.out.println("Failed to click for close tab Btn");
+				return false;
+			}
+
+			Thread.sleep(3000);
+			if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
+				System.out.println("Failed to click eCommerce InitiateImediatePayment");
+				return false;
+			}
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.immediatePayment())) {
+			System.out.println("Failed to wait for eCommerce InitiateImediatePayment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.immediatePayment())) {
+			System.out.println("Failed to click eCommerce InitiateImediatePayment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendBtn())) {
+			System.out.println("Failed to wait for eCommerce send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.sendBtn())) {
+			System.out.println("Failed to click eCommerce send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.paymentPages(),getTimeout())) {
+			System.out.println("Failed to wait for eCommerce payment pages url");
+			return false;
+		}
+
+		//Navigate to paymentPages in new tab
+		String URL = SeleniumDriverUtilities.retrieveElementText(PageObjects.paymentPages()).trim();
+		String navigateURL = URL.substring(18, URL.length()-1);
+
+		WebDriver newTab = getDriver().switchTo().newWindow(WindowType.TAB);
+
+		newTab.get(navigateURL);
+
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.singlePayment(),getTimeout())) {
+			System.out.println("Failed to wait for eCommerce payment pages single payment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.singlePayment())) {
+			System.out.println("Failed to click eCommerce payment pages single payment");
+			return false;
+		}
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.singlepaymentCard())) {
 			System.out.println("Failed to wait for eCommerce continue to pay Btn");
@@ -234,26 +447,26 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 	}
 
 	public static boolean InitiateImmediateSplitPaymentAddCard() throws InterruptedException{
-		
+
 		//InitiateBrowser();
 		String parent = Driver.getWindowHandle();
-		for (int i =0; i < 2; i++) {
-			if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
-				System.out.println("Failed to wait for close tab Btn");
-				return false;
-			}
+		//		for (int i =0; i < 2; i++) {
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
+			System.out.println("Failed to wait for close tab Btn");
+			return false;
+		}
 
-			if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
-				System.out.println("Failed to click for close tab Btn");
-				return false;
-			}
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
+			System.out.println("Failed to click for close tab Btn");
+			return false;
+		}
 
-			Thread.sleep(3000);
-			if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
-				System.out.println("Failed to click eCommerce InitiateImediatePayment");
-				return false;
-			}
-		}		
+		Thread.sleep(3000);
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
+			System.out.println("Failed to click eCommerce InitiateImediatePayment");
+			return false;
+		}
+		//		}		
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.immediatePayment())) {
 			System.out.println("Failed to wait for eCommerce InitiateImediatePayment");
 			return false;
@@ -297,11 +510,6 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			return false;
 		}
 
-		//Select card
-		//		WebElement element = getDriver().findElement(By.xpath(PageObjects.splitPaymentCardList()));
-		//		List<WebElement> select = element.findElements(By.tagName("div"));
-		//		select.get(3).click();
-
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.splitPaymentCard1())) {
 			System.out.println("Failed to wait for eCommerce payment pages split payment");
 			return false;
@@ -326,112 +534,112 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			System.out.println("Failed to click done Btn");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.splitPaymentAddCard())) {
 			System.out.println("Failed to wait for add card button");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.splitPaymentAddCard())) {
 			System.out.println("Failed to click add card button");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.cardName())) {
 			System.out.println("Failed to wait for card name input field");
 		}
-		
+
 		if (!SeleniumDriverUtilities.enterText(PageObjects.cardName(),"cvv178")) {
 			System.out.println("Failed to enter card name into input field");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.cardNumber())) {
 			System.out.println("Failed to wait for card number input field.");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.enterText(PageObjects.cardNumber(),"4606120200006589")) {
 			System.out.println("Failed to enter card number into input field.");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.cardExpiryYear())) {
 			System.out.println("Failed to wait for add card expiry year dropdown");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.yearOption())) {
 			System.out.println("Failed to enter add card expiry year");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.cardExpiryDate())) {
 			System.out.println("Failed to wait for add card expiry date dropdown");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.dateOption())) {
 			System.out.println("Failed to enter add card expiry date");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.addCardAmount())) {
 			System.out.println("Failed to wait for add card amount input field");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.enterText(PageObjects.addCardAmount(),"1000")) {
 			System.out.println("Failed to wait for add card amount input field");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.slpitPaymentCVV())) {
 			System.out.println("Failed to wait for add card amount input field");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.enterText(PageObjects.slpitPaymentCVV(),"178")) {
 			System.out.println("Failed to wait for add card amount input field");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.saveCardCheckBox())) {
 			System.out.println("Failed to wati for save card checkBox");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.saveCardCheckBox())) {
 			System.out.println("Failed to click save card checkBox");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.cardAlis())) {
 			System.out.println("Failed to wait for add card amount input field");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.enterText(PageObjects.cardAlis(),"cvv178")) {
 			System.out.println("Failed to wait for add card amount input field");
 			return false;
 		}
-		
+
 		Thread.sleep(3000);
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.addCardDone())) {
 			System.out.println("Failed to wati for save card checkBox");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.scrollToElement(PageObjects.addCardDone())) {
 			System.out.println("Failed to wati for save card checkBox");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.clickElement(PageObjects.addCardDone())) {
 			System.out.println("Failed to click add card done button");
 			return false;
 		}
-		
+
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.splitPaymentPayBtn())) {
 			System.out.println("Failed to wait for eCommerce payment pages split payment");
 			return false;
@@ -502,28 +710,28 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 		getDriver().switchTo().window(parent);
 		return false;
 	}
-	
+
 	public static boolean InitiateImmediateSplitPayment() throws InterruptedException {
 
 		//		InitiateBrowser();
 		String parent = Driver.getWindowHandle();
-//		for (int i =0; i < 2; i++) {
-			if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
-				System.out.println("Failed to wait for close tab Btn");
-				return false;
-			}
+		//		for (int i =0; i < 2; i++) {
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
+			System.out.println("Failed to wait for close tab Btn");
+			return false;
+		}
 
-			if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
-				System.out.println("Failed to click for close tab Btn");
-				return false;
-			}
-//
-//			Thread.sleep(3000);
-//			if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
-//				System.out.println("Failed to click eCommerce InitiateImediatePayment");
-//				return false;
-//			}
-//		}		
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
+			System.out.println("Failed to click for close tab Btn");
+			return false;
+		}
+		//
+		//			Thread.sleep(3000);
+		//			if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
+		//				System.out.println("Failed to click eCommerce InitiateImediatePayment");
+		//				return false;
+		//			}
+		//		}		
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.immediatePayment())) {
 			System.out.println("Failed to wait for eCommerce InitiateImediatePayment");
 			return false;
@@ -1036,7 +1244,7 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 	}
 
 	public static boolean InitiateRecurringPayment() throws InterruptedException {
-//				InitiateBrowser();
+//		InitiateBrowser();
 		String parent = Driver.getWindowHandle();
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
 			System.out.println("Failed to wait for close tab Btn");
@@ -1154,7 +1362,7 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			System.out.println("Failed to wait for respone message");
 			return false;
 		}
-		Thread.sleep(4000);
+		Thread.sleep(5000);
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.lastResponse(),5000)) {
 			System.out.println("Failed to wait for respone message");
@@ -1169,6 +1377,110 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			return false;
 		}else {
 			System.out.println(responseMessage + " : TEST PASS!");
+		}
+		newTab.close();
+		getDriver().switchTo().window(parent);;
+		return false;
+	}
+
+	public static boolean removeCard() throws InterruptedException {
+
+		//		InitiateBrowser();
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
+			System.out.println("Failed to wait for close tab Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
+			System.out.println("Failed to click for close tab Btn");
+			return false;
+		}
+
+		Thread.sleep(3000);
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
+			System.out.println("Failed to click eCommerce InitiateImediatePayment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.immediatePayment())) {
+			System.out.println("Failed to wait for eCommerce InitiateImediatePayment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.immediatePayment())) {
+			System.out.println("Failed to click eCommerce InitiateImediatePayment");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.sendBtn())) {
+			System.out.println("Failed to wait for eCommerce send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.clickElement(PageObjects.sendBtn())) {
+			System.out.println("Failed to click eCommerce send Btn");
+			return false;
+		}
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.paymentPages(),getTimeout())) {
+			System.out.println("Failed to wait for eCommerce payment pages url");
+			return false;
+		}
+
+		//Navigate to paymentPages in new tab
+		String URL = SeleniumDriverUtilities.retrieveElementText(PageObjects.paymentPages()).trim();
+		String navigateURL = URL.substring(18, URL.length()-1);
+
+		WebDriver newTab = getDriver().switchTo().newWindow(WindowType.TAB);
+
+		newTab.get(navigateURL);
+
+
+		if (!SeleniumDriverUtilities.waitForElement(PageObjects.singlePayment(),getTimeout())) {
+			System.out.println("Failed to wait for eCommerce payment pages single payment");
+			return false;
+		}
+
+		for (int i = 0; i<2;i++) {
+
+			if (!SeleniumDriverUtilities.clickElement(PageObjects.singlePayment())) {
+				System.out.println("Failed to click eCommerce payment pages single payment");
+				return false;
+			}
+
+			if (!SeleniumDriverUtilities.waitForElement(PageObjects.removeCard())) {
+				System.out.println("Failed to wait for remove card");
+				return false;	
+			}
+
+			if (!SeleniumDriverUtilities.clickElement(PageObjects.removeCard())) {
+				System.out.println("Failed to click for remove card");
+				return false;
+
+			}
+
+			if (!SeleniumDriverUtilities.waitForElement(PageObjects.removeCardBtn())) {
+				System.out.println("Failed to wait for remove card");
+				return false;	
+			}
+
+			if (!SeleniumDriverUtilities.clickElement(PageObjects.removeCardBtn())) {
+				System.out.println("Failed to click for remove card");
+				return false;
+
+			}
+
+			if (!SeleniumDriverUtilities.waitForElement(PageObjects.removeCardDoneBtn())) {
+				System.out.println("Failed to wait for remove card");
+				return false;	
+			}
+
+			if (!SeleniumDriverUtilities.clickElement(PageObjects.removeCardDoneBtn())) {
+				System.out.println("Failed to click for remove card");
+				return false;
+			}
+			Thread.sleep(3000);
 		}
 		newTab.close();
 		getDriver().quit();

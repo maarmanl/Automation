@@ -95,27 +95,6 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 
 	public static boolean listTokens() throws InterruptedException{
 		initiatemCommerceBrowser();
-		//		String parent = Driver.getWindowHandle();
-
-		//		if (!SeleniumDriverUtilities.clickElement(PageObjects.eCommerce())) {
-		//			System.out.println("Failed to wait for mCommerce QA tab");
-		//
-		//		}
-		//
-		//		if (!SeleniumDriverUtilities.clickElement(PageObjects.mCommerceQA())) {
-		//			System.out.println("Failed to click mCommerce QA tab");
-		//
-		//		}
-		//		
-		//		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
-		//			System.out.println("Failed to wait for close tab Btn");
-		//			return false;
-		//		}
-		//
-		//		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
-		//			System.out.println("Failed to click for close tab Btn");
-		//			return false;
-		//		}
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.didgitalWalletTab())) {
 			System.out.println("Failed to wait for didgital wallet tab");
