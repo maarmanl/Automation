@@ -552,6 +552,7 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 		}
 
 		String paymentToken1 = SeleniumDriverUtilities.retrieveElementText(PageObjects.paymentTokenscnd());
+		Thread.sleep(getTimeout());
 		paymentToken1 = paymentToken1.substring(21, paymentToken1.length()-2);
 
 		if(paymentToken1.equals(paymentToken)) {
@@ -619,9 +620,9 @@ public class mCommerceTest extends SeleniumDriverUtilities {
 
 		paymentToken1 = SeleniumDriverUtilities.retrieveElementText(PageObjects.paymentTokenscnd());
 		Thread.sleep(1000);
-		paymentToken1 = paymentToken1.substring(21, paymentToken1.length()-2);
+		String paymentToken2 = paymentToken1.substring(21, paymentToken1.length()-2);
 
-		if(paymentToken1.equals(paymentToken)) {
+		if(paymentToken2.equals(paymentToken)) {
 			System.out.println("Payment token match");
 		}else {
 			element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='view-line'][6]//span[contains(text(),'"+paymentToken1+"')]")));

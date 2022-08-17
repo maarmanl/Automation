@@ -1385,7 +1385,7 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 
 	public static boolean removeCard() throws InterruptedException {
 
-		//		InitiateBrowser();
+//				InitiateBrowser();
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
 			System.out.println("Failed to wait for close tab Btn");

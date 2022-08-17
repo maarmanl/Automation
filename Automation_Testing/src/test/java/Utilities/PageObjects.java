@@ -194,9 +194,10 @@ public class PageObjects {
 	}
 
 	public static String sendDownload() {
-		return "//*[@id='app-root']/div/div/div[6]/div[1]/div[1]/div/div/div/div[2]/div/div/div/div[2]/div/div/div/div/div/div[1]/div[1]/div/div[2]/div/div[2]/div/div/div/div/div[2]/i";
+		return "//div[@class='btn']//i[@class='IconWrapper__IconContainer-gnjn48-0 gkhcSN dropdown-caret']";
 	}
-
+	//*[@id='app-root']/div/div/div[6]/div[1]/div[1]/div/div/div/div[2]/div/div/div/div[2]/div/div/div/div/div/div[1]/div[1]/div/div[2]/div/div[2]/div/div/div/div/div[2]/i
+	
 	public static String sendDownloadBtn() {
 		return "//div[@class= 'dropdown-menu-item dropdown-menu-item--send-and-download']";
 	}
