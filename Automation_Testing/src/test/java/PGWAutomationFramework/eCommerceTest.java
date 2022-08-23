@@ -1,7 +1,5 @@
 package PGWAutomationFramework;
 
-import java.util.Iterator;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 
@@ -96,7 +94,7 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 	}
 
 	public static boolean ImmediatePaymentAddCard() throws InterruptedException {
-		InitiateBrowser();
+		//InitiateBrowser();
 		String parent = Driver.getWindowHandle();
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.immediatePayment())) {
@@ -131,17 +129,6 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 		WebDriver newTab = getDriver().switchTo().newWindow(WindowType.TAB);
 
 		newTab.get(navigateURL);
-
-
-		if (!SeleniumDriverUtilities.waitForElement(PageObjects.singlePayment(),getTimeout())) {
-			System.out.println("Failed to wait for eCommerce payment pages single payment");
-			return false;
-		}
-
-		if (!SeleniumDriverUtilities.clickElement(PageObjects.singlePayment())) {
-			System.out.println("Failed to click eCommerce payment pages single payment");
-			return false;
-		}
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.singlePaymentAddCard())) {
 			System.out.println("Failed to wait for add card button");
@@ -201,16 +188,6 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			System.out.println("Failed to enter add card expiry date");
 			return false;
 		}
-
-		//		if (!SeleniumDriverUtilities.waitForElement(PageObjects.addCardAmount())) {
-		//			System.out.println("Failed to wait for add card amount input field");
-		//			return false;
-		//		}
-		//		
-		//		if (!SeleniumDriverUtilities.enterText(PageObjects.addCardAmount(),"1000")) {
-		//			System.out.println("Failed to wait for add card amount input field");
-		//			return false;
-		//		}
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.slpitPaymentCVV())) {
 			System.out.println("Failed to wait for add card amount input field");
@@ -294,27 +271,8 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 
 	public static boolean ImmediatePayment() throws InterruptedException {
 
-		//		InitiateBrowser();
+		InitiateBrowser();
 		String parent = Driver.getWindowHandle();
-
-		for (int i =0; i < 2; i++) {
-			if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
-				System.out.println("Failed to wait for close tab Btn");
-				return false;
-			}
-
-			if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
-				System.out.println("Failed to click for close tab Btn");
-				return false;
-			}
-
-			Thread.sleep(3000);
-			if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
-				System.out.println("Failed to click eCommerce InitiateImediatePayment");
-				return false;
-			}
-		}
-
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.immediatePayment())) {
 			System.out.println("Failed to wait for eCommerce InitiateImediatePayment");
 			return false;
@@ -358,6 +316,11 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			System.out.println("Failed to click eCommerce payment pages single payment");
 			return false;
 		}
+
+		//Select card
+		//		WebElement element = getDriver().findElement(By.xpath(PageObjects.cardList()));
+		//		List<WebElement> select = element.findElements(By.tagName("div"));
+		//		select.get(3).click();
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.singlepaymentCard())) {
 			System.out.println("Failed to wait for eCommerce continue to pay Btn");
@@ -450,23 +413,23 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 
 		//InitiateBrowser();
 		String parent = Driver.getWindowHandle();
-		//		for (int i =0; i < 2; i++) {
-		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
-			System.out.println("Failed to wait for close tab Btn");
-			return false;
-		}
+		for (int i =0; i < 2; i++) {
+			if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
+				System.out.println("Failed to wait for close tab Btn");
+				return false;
+			}
 
-		if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
-			System.out.println("Failed to click for close tab Btn");
-			return false;
-		}
+			if (!SeleniumDriverUtilities.clickElement(PageObjects.closeTab())) {
+				System.out.println("Failed to click for close tab Btn");
+				return false;
+			}
 
-		Thread.sleep(3000);
-		if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
-			System.out.println("Failed to click eCommerce InitiateImediatePayment");
-			return false;
-		}
-		//		}		
+			Thread.sleep(3000);
+			if (!SeleniumDriverUtilities.clickElement(PageObjects.environmentSelect())) {
+				System.out.println("Failed to click eCommerce InitiateImediatePayment");
+				return false;
+			}
+		}		
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.immediatePayment())) {
 			System.out.println("Failed to wait for eCommerce InitiateImediatePayment");
 			return false;
@@ -509,6 +472,11 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			System.out.println("Failed to click eCommerce payment pages split payment");
 			return false;
 		}
+
+		//Select card
+		//		WebElement element = getDriver().findElement(By.xpath(PageObjects.splitPaymentCardList()));
+		//		List<WebElement> select = element.findElements(By.tagName("div"));
+		//		select.get(3).click();
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.splitPaymentCard1())) {
 			System.out.println("Failed to wait for eCommerce payment pages split payment");
@@ -1244,7 +1212,7 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 	}
 
 	public static boolean InitiateRecurringPayment() throws InterruptedException {
-//		InitiateBrowser();
+		//				InitiateBrowser();
 		String parent = Driver.getWindowHandle();
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
 			System.out.println("Failed to wait for close tab Btn");
@@ -1362,7 +1330,7 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 			System.out.println("Failed to wait for respone message");
 			return false;
 		}
-		Thread.sleep(5000);
+		Thread.sleep(4000);
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.lastResponse(),5000)) {
 			System.out.println("Failed to wait for respone message");
@@ -1378,14 +1346,15 @@ public class eCommerceTest extends SeleniumDriverUtilities{
 		}else {
 			System.out.println(responseMessage + " : TEST PASS!");
 		}
+		
 		newTab.close();
-		getDriver().switchTo().window(parent);;
+		getDriver().switchTo().window(parent);
 		return false;
 	}
-
+	
 	public static boolean removeCard() throws InterruptedException {
 
-//				InitiateBrowser();
+		//		InitiateBrowser();
 
 		if (!SeleniumDriverUtilities.waitForElement(PageObjects.closeTab())) {
 			System.out.println("Failed to wait for close tab Btn");
